@@ -3,32 +3,15 @@ const express = require('express');
 const app = express();
 //asignamos el puerto que queremos usar
 const port = 3000;
+//petición de las rutas
+const router = require('./router');
 
 //hago una peticion de obtener donde le vamos a enviar la respuesta
 app.get('/', (req, res) => {
   res.send('Hello servidor lindo');
 });
 
-app.get('/pepe', (req, res) => {
-  res.json([
-    {
-      name: 'pepe',
-      edad: '25',
-    },
-    {
-      name: 'camilo',
-      edad: '50',
-    },
-  ]);
-});
-
-//los dos puntos significan que le voy a asignar un parametro
-app.get('/pepe/:id', (req, res) => {
-  res.json({
-    name: 'pepe',
-    edad: '25',
-  });
-});
+router(app);
 
 //configuración del puerto
 app.listen(port, () => {
